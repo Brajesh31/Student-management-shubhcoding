@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Student System</title></head>
+<body>
+  <ul id="list"></ul>
+  <input id="roll" placeholder="Roll No">
+  <button onclick="search()">Search</button>
+  <p id="res"></p>
+
+  <script>
+    fetch('/api/students/')
+      .then(res => res.json())
+      .then(d => d.forEach(s => {
+         let li = document.createElement('li');
+         li.innerText = `${s.name} (${s.roll_number}) - ${s.course} - ${s.attendance}`;
+         document.getElementById('list').appendChild(li);
+      }));
+
+    function search() {
+      const r = document.getElementById('roll').value;
+      fetch(`/api/students/search/?roll_number=${r}`)
+        .then(res => res.json())
+        .then(d => {
+          document.getElementById('res').innerText = d.name ? `${d.name} - ${d.attendance}` : 'Not found';
+        });
+    }
+  </script>
+</body>
+</html>

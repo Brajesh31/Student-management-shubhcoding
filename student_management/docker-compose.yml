@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+    environment:
+      - DEBUG=1
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
