@@ -45,4 +45,4 @@ cd student-management-shubhcoding
 # Build & run containers
 docker-compose up --build
 
-Last updated: 2026-10-13 21:08 UTC
+Last updated: 2026-10-13 23:37 UTC
